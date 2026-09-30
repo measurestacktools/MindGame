@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>MindGame — AI Personality Mind Game</title>
+<link rel="stylesheet" href="/static/style.css" />
+</head>
+<body>
+<header class="topbar">
+  <div class="brand">🧠 MindGame</div>
+  <div class="top-actions">
+    <span id="keyBadge" class="badge off">No key</span>
+    <button id="settingsBtn" class="btn ghost">⚙️ Settings</button>
+  </div>
+</header>
+
+<div class="disclaimer">🎪 Just for fun — entertainment only. Not a psychological diagnosis, not science.</div>
+
+<main class="wrap">
+  <section id="homeScreen" class="card hero">
+    <h1>Discover your mind, playfully.</h1>
+    <p class="sub">Answer 6 vivid AI-generated scenarios. Get a fun archetype reveal — strengths, style, quirks &amp; all.</p>
+    <div class="row">
+      <button id="startBtn" class="btn primary big">✨ Start Game</button>
+      <button id="howBtn" class="btn">How it works</button>
+    </div>
+    <p id="homeHint" class="hint">Add your Groq key in Settings to play with live AI.</p>
+    <div id="howBox" class="how hidden">
+      <ol>
+        <li>Tap <b>Start Game</b> — AI invents 6 scenarios.</li>
+        <li>Pick one of 4 cards per scenario (Q1/6 → Q6/6).</li>
+        <li>Hit <b>Reveal</b> for your shareable archetype card.</li>
+      </ol>
+    </div>
+  </section>
+
+  <section id="gameScreen" class="hidden">
+    <div class="progress-wrap">
+      <div class="progress-label"><span id="qLabel">Q1/6</span><span id="pctLabel">0%</span></div>
+      <div class="progress"><div id="progressBar"></div></div>
+    </div>
+    <div id="scenarioCard" class="card scenario">
+      <p id="scenarioText" class="scenario-text"></p>
+      <div id="choicesGrid" class="choices"></div>
+    </div>
+    <p id="gameError" class="error hidden"></p>
+  </section>
+
+  <section id="revealScreen" class="hidden">
+    <div class="card center">
+      <h2>All 6 answers locked in! 🎉</h2>
+      <p class="sub">Ready for your mind reveal?</p>
+      <button id="revealBtn" class="btn primary big">🔮 Reveal My Archetype</button>
+      <p id="revealError" class="error hidden"></p>
+    </div>
+  </section>
+
+  <section id="resultScreen" class="hidden">
+    <div id="resultCard" class="card result">
+      <div class="result-eyebrow">✨ YOUR MINDGAME ARCHETYPE ✨</div>
+      <h2 id="rArchetype">—</h2>
+      <p id="rTitle" class="result-title">—</p>
+      <p id="rDesc" class="result-desc">—</p>
+      <div class="result-grid">
+        <div><h3>💪 Strengths</h3><ul id="rStrengths"></ul></div>
+        <div><h3>😅 Fun weaknesses</h3><ul id="rWeak"></ul></div>
+      </div>
+      <div class="result-block"><h3>🧭 Decision style</h3><p id="rDecision"></p></div>
+      <div class="result-block"><h3>🧩 Problem solving</h3><p id="rProblem"></p></div>
+      <div class="result-block"><h3>💬 Communication</h3><p id="rComm"></p></div>
+      <div class="result-block"><h3>🌟 Signature traits</h3><div id="rTraits" class="pills"></div></div>
+      <div class="result-foot">🎪 MindGame · just for fun, not psychology · <span id="rModel">openai/gpt-oss-120b</span></div>
+    </div>
+    <div class="row center-row">
+      <button id="copyBtn" class="btn primary">📋 Copy result</button>
+      <button id="againBtn" class="btn">🔁 Play Again</button>
+    </div>
+    <p id="copyMsg" class="hint hidden">Copied! Paste it anywhere. 📋</p>
+  </section>
+
+  <div id="loading" class="loading hidden"><div class="spinner"></div><p id="loadingText">Summoning scenarios…</p></div>
+</main>
+
+<div id="settingsModal" class="modal hidden">
+  <div class="modal-card">
+    <h2>⚙️ Groq API Key</h2>
+    <p class="sub small">Key is verified then kept in <b>server memory only</b>. Never stored in your browser. Presence only is shown.</p>
+    <input id="keyInput" type="password" placeholder="gsk_..." autocomplete="off" />
+    <p id="keyError" class="error hidden"></p>
+    <p id="keyOk" class="ok hidden"></p>
+    <div class="row">
+      <button id="saveKeyBtn" class="btn primary">Save &amp; Verify</button>
+      <button id="clearKeyBtn" class="btn ghost">Forget key</button>
+      <button id="closeSettingsBtn" class="btn">Close</button>
+    </div>
+  </div>
+</div>
+
+<footer class="foot">MindGame · entertainment only 🎪 · just for fun — not diagnosis, not science.</footer>
+<script src="/static/app.js"></script>
+</body>
+</html>
